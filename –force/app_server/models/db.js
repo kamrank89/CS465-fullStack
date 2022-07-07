@@ -4,27 +4,18 @@ const host = process.env.DB_HOST || "127.0.0.1";
 const dbURI = `mongodb://${host}/travlr`;
 const readLine = require("readline");
 
-mongoose.set("useUnifiedTopology", true);
-
 const connect = () => {
-  setTimeout(
-    () =>
-      mongoose.connect(dbURI, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-      }),
-    1000
-  );
+  setTimeout(() => mongoose.connect(dbURI), 1000);
 };
 
 mongoose.connection.on("connected", () => {
-  "Mongoose is connected";
+  console.log("Mongoose is connected");
 });
 mongoose.connection.on("error", (err) => {
-  `Mongoose is not connected: ${err}`;
+  console.log(`Mongoose is not connected: ${err}`);
 });
 mongoose.connection.on("disconnected", () => {
-  "Mongoose is disconnected";
+  console.log("Mongoose is disconnected");
 });
 
 if (process.platform === "win32") {
