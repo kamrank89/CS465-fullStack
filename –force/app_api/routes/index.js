@@ -10,6 +10,9 @@ router
   .post(tripsController.tripsAddTrip);
 
 /* Routing to a single trip */
-router.route("/trips/:tripCode").get(ctrlApi.tripsFindByCode);
+router
+  .route("/trips/:tripCode")
+  .get(ctrlApi.tripsFindByCode)
+  .put(tripsController.tripsUpdateTrip);
 
 module.exports = router;
