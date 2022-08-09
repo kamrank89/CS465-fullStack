@@ -55,3 +55,4 @@ process.on("SIGTERM", () => {
 connect();
 
 require("./travel");
+require("./user");

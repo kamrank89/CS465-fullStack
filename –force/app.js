@@ -1,3 +1,4 @@
+require("dotenv").config();
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -12,6 +13,8 @@ const usersRouter = require("./app_server/routes/users");
 const travelRouter = require("./app_server/routes/travel");
 const apiRouter = require("./app_api/routes/index");
 const { hasSubscribers } = require("diagnostics_channel");
+const passport = require("passport");
+require("./app_api/config/passport");
 
 var app = express();
 
@@ -26,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(passport.initialize());
 
 /* Allow CORS */
 app.use(cors());
